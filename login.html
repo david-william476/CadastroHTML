@@ -2,35 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>CADASTRO</title>
-<link rel="stylesheet" href="CSS/Style.css">
-   <script src="JS/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cadastros</title>
 
+    <link rel="stylesheet" href="CSS/Style.css">
+    <script src="JS/script.js"></script>
 </head>
+
 <body>
 
-    <h1>Lista de Cadastros</h1>
+    <div id="divLogin">
 
-    <table>
+        <h1>Lista de Cadastros</h1>
 
-        <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Data de Nascimento</th>
-            <th>CPF</th>
-        </tr>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Data de Nascimento</th>
+                <th>CPF</th>
+            </tr>
 
-        <tr>
-            <td>João Silva</td>
-            <td>(11) 99999-9999</td>
-            <td>10/05/2000</td>
-            <td>123.456.789-00</td>
-        </tr>
+            <tr>
+                <td>João Silva</td>
+                <td>(11) 99999-9999</td>
+                <td>10/05/2000</td>
+                <td>123.456.789-00</td>
+            </tr>
+        </table>
 
-    </table>
-    <a href="index.html">
-    <button id="btnReturn">RETURN</button>
-</a>
+        <br>
+
+        <button id="btnReturn" onclick="window.location.href='index.html'">
+            RETURN
+        </button>
+
+    </div>
+
 </body>
 </html>
