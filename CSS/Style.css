@@ -1,4 +1,13 @@
 /* ========================= */
+/* Configurações Gerais */
+/* ========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ========================= */
 /* Página de Cadastro */
 /* ========================= */
 
@@ -19,22 +28,22 @@
 
 #divLogin {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
-table {
+#divLogin table {
     margin: auto;
     border-collapse: collapse;
 }
 
-th,
-td {
+#divLogin th,
+#divLogin td {
     border: 1px solid black;
-    padding: 10px;
+    padding: 10px 15px;
 }
 
-h1 {
-    text-align: center;
+#divLogin h1 {
+    margin-bottom: 30px;
 }
 
 #btnReturn {
@@ -50,6 +59,7 @@ h1 {
     cursor: pointer;
 
     margin-top: 30px;
+    transition: background-color 0.3s;
 }
 
 #btnReturn:hover {
