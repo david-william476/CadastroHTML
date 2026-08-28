@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cadastros</title>
+
+    <link rel="stylesheet" href="CSS/Style.css">
+    <script src="JS/script.js"></script>
+</head>
+
+<body>
+
+   <div id="div4"> 
+
+    <h1>CRIAR CADASTRO</h1>
+    <br>
+    
+ <div class="campo">
+    <label>Nome Completo</label>
+    <input type="text" name="nome" placeholder="Digite seu nome completo" minlength="5"
+    maxlength="67">
+</div>
+
+
+<br>
+    <div class="campo">
+    <label>E-mail</label>
+    <input type="email" name="email" placeholder="Digite seu e-mail">
+    </div>
+
+
+<br>
+<div class="campo">
+    <label>Senha</label>
+    <input type="password" name="password" placeholder="Crie uma senha" minlength="8" maxlength="24">
+</div>
+<br>
+
+
+    <div class="campo">
+        <label>Confirme sua senha</label>
+        <input type="password" name="password" placeholder="Confirme sua senha" minlength="8" maxlength="24">
+    </div>
+
+ <br>
+    
+    <div class="campo">
+        <label>Data de Nascimento</label>
+        <input type="date" name="data" placeholder="Digite sua data de nascimento">
+    </div>
+    <br>
+
+    <div class="campo">
+        <label>CPF</label>
+        <input type="text" name="cpf" placeholder="Digite seu CPF" minlength="11" maxlength="11">
+    </div>
+<br>
+
+    <div class="botoes">
+    <button id="limpar">Limpar</button>
+
+    <button id="btnCadastrar" onclick="cadastrar()">
+        Cadastrar
+    </button>
+</div>
+
+   </div>
+
+</body>
+</html>
