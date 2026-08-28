@@ -11,21 +11,28 @@ body {
 /* Página de Login */
 /* ========================= */
 
+
 #div1 {
     text-align: center;
     margin-top: 220px;
 }
+
 
 #div2 {
     text-align: center;
     margin-top: 10px;
 }
 
+
     #div3 {
     text-align: center;
     margin-top: -25px;
     }
 
+
+    #btnLogin {
+    margin-left: 168px;
+}
 
 /* ========================= */
 /* Página de Cadastro */
