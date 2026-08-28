@@ -1,35 +1,92 @@
 <!DOCTYPE html>
-<html lang="Pt-Br">
+<html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="CSS/Style.css">
-   <script src="JS/Script.js"></script>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Lista de Cadastros</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/Style.css">
 
 </head>
-<body>
-    <div id="div6">
-    <h1>Lista de Cadastros</h1>
 
+<body>
+
+    <main id="div6">
+
+        <h1>Lista de Cadastros</h1>
+
+        <br>
 
         <table id="tabelaUsuarios">
 
-        <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-            <th>CPF</th>
-            <th>Ações</th>
-        </tr>
+            <thead>
+
+                <tr>
+
+                    <th>Nome</th>
+
+                    <th>Data de Nascimento</th>
+
+                    <th>CPF</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <!-- Os usuários serão inseridos aqui pelo Script.js -->
+
+            </tbody>
 
         </table>
 
-        <script>
-    carregarTabela();
-</script>
+        <br>
 
-    </div>
+        <div class="voltarLogin">
 
-    
+            <a href="index.html">
+
+                ← Voltar ao Login
+
+            </a>
+
+        </div>
+
+                <!-- ========================= -->
+        <!-- BOTÕES -->
+        <!-- ========================= -->
+
+        <div class="botoesTabela">
+
+            <button
+                type="button"
+                id="btnAtualizar">
+
+                Atualizar
+
+            </button>
+
+        </div>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script type="module" src="JS/Script.js"></script>
+
 </body>
+
 </html>

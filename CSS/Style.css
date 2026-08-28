@@ -1,170 +1,824 @@
-/* ========================= */
-/* Configurações Gerais */
-/* ========================= */
+/* ========================================= */
+/* RESET GERAL */
+/* ========================================= */
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 
-/* ========================= */
-/* Página de Login */
-/* ========================= */
+/* ========================================= */
+/* BODY */
+/* ========================================= */
 
+body{
 
-#div1 {
-    text-align: center;
-    margin-top: 220px;
+    background:linear-gradient(135deg,#d9f5e5,#ffffff);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    padding:30px;
+
 }
 
 
-#div2 {
-    text-align: center;
-    margin-top: 10px;
+/* ========================================= */
+/* TÍTULOS */
+/* ========================================= */
+
+h1{
+
+    color:#0b6b3a;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
 }
 
 
-    #div3 {
-    text-align: center;
-    margin-top: -25px;
+/* ========================================= */
+/* CONTAINERS */
+/* ========================================= */
+
+#div1,
+#div4,
+#div5,
+#div6{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:35px;
+
+    box-shadow:0px 8px 20px rgba(0,0,0,.18);
+
+}
+
+
+/* ========================================= */
+/* CAMPOS */
+/* ========================================= */
+
+.campo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+
+.campo label{
+
+    font-weight:bold;
+
+    color:#333;
+
+}
+
+
+.campo input{
+
+    padding:12px;
+
+    border:1px solid #cfcfcf;
+
+    border-radius:8px;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+
+.campo input:focus{
+
+    border-color:#198754;
+
+    box-shadow:0 0 8px rgba(25,135,84,.25);
+
+}
+
+
+/* ========================================= */
+/* CAMPOS COM ERRO */
+/* ========================================= */
+
+.erro{
+
+    border:2px solid red !important;
+
+    background:#fff0f0;
+
+}
+
+
+/* ========================================= */
+/* BOTÕES */
+/* ========================================= */
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:12px 20px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+/* Botão principal */
+
+#btnCadastrar,
+#btnLogin,
+#btnRecuperar,
+#btnAtualizar{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+
+#btnCadastrar:hover,
+#btnLogin:hover,
+#btnRecuperar:hover,
+#btnAtualizar:hover{
+
+    background:#157347;
+
+}
+
+
+/* Botão limpar */
+
+#limpar{
+
+    background:#6c757d;
+
+    color:white;
+
+}
+
+
+#limpar:hover{
+
+    background:#5b6268;
+
+}
+
+
+/* Área dos botões */
+
+.botoes,
+.botoesTabela{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ========================================= */
+/* LOGIN */
+/* ========================================= */
+
+#div1{
+
+    text-align:center;
+
+}
+
+#div1 .campo{
+
+    margin-bottom:15px;
+
+}
+
+
+/* ========================================= */
+/* CADASTRO */
+/* ========================================= */
+
+#div4{
+
+    text-align:center;
+
+}
+
+#div4 .campo{
+
+    margin-bottom:15px;
+
+}
+
+
+/* ========================================= */
+/* RECUPERAR SENHA */
+/* ========================================= */
+
+#div5{
+
+    text-align:center;
+
+}
+
+#div5 .campo{
+
+    margin-bottom:15px;
+
+}
+
+
+/* ========================================= */
+/* LINKS */
+/* ========================================= */
+
+a{
+
+    color:#198754;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+a:hover{
+
+    color:#157347;
+
+    text-decoration:underline;
+
+}
+
+
+/* ========================================= */
+/* VOLTAR AO LOGIN */
+/* ========================================= */
+
+.voltarLogin{
+
+    margin-top:20px;
+
+    text-align:center;
+
+}
+
+
+/* ========================================= */
+/* ÁREA "NÃO POSSUI CADASTRO?" */
+/* ========================================= */
+
+#div2,
+#div3{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    box-shadow:0px 5px 12px rgba(0,0,0,.12);
+
+}
+
+
+/* ========================================= */
+/* BOTÃO CADASTROS */
+/* ========================================= */
+
+#btnTabela{
+
+    position:fixed;
+
+    bottom:15px;
+
+    left:15px;
+
+    background:#198754;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    text-decoration:none;
+
+    box-shadow:0px 4px 10px rgba(0,0,0,.2);
+
+    transition:.3s;
+
+}
+
+#btnTabela:hover{
+
+    background:#157347;
+
+    transform:scale(1.05);
+
+}
+
+/* ========================================= */
+/* TABELA */
+/* ========================================= */
+
+#div6{
+
+    max-width:900px;
+
+    text-align:center;
+
+}
+
+
+/* ========================================= */
+/* TABELA DE USUÁRIOS */
+/* ========================================= */
+
+#tabelaUsuarios{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+    background:white;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:0px 5px 15px rgba(0,0,0,.15);
+
+}
+
+
+/* ========================================= */
+/* CABEÇALHO */
+/* ========================================= */
+
+#tabelaUsuarios thead{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+
+#tabelaUsuarios th{
+
+    padding:15px;
+
+    font-size:16px;
+
+    text-align:center;
+
+}
+
+
+/* ========================================= */
+/* LINHAS */
+/* ========================================= */
+
+#tabelaUsuarios td{
+
+    padding:14px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    text-align:center;
+
+    color:#333;
+
+}
+
+
+/* ========================================= */
+/* EFEITO AO PASSAR O MOUSE */
+/* ========================================= */
+
+#tabelaUsuarios tbody tr{
+
+    transition:.25s;
+
+}
+
+
+#tabelaUsuarios tbody tr:hover{
+
+    background:#eef8f1;
+
+}
+
+
+/* ========================================= */
+/* LINHAS PARES */
+/* ========================================= */
+
+#tabelaUsuarios tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+
+/* ========================================= */
+/* ÚLTIMA LINHA */
+/* ========================================= */
+
+#tabelaUsuarios tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* ========================================= */
+/* COLUNA DE AÇÕES */
+/* ========================================= */
+
+#tabelaUsuarios td:last-child{
+
+    width:90px;
+
+}
+
+/* ========================================= */
+/* BOTÃO DA LIXEIRA */
+/* ========================================= */
+
+.btnExcluir{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#dc3545;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+}
+
+.btnExcluir:hover{
+
+    background:#bb2d3b;
+
+    transform:scale(1.10);
+
+}
+
+.btnExcluir:active{
+
+    transform:scale(.95);
+
+}
+
+
+/* ========================================= */
+/* BOTÃO ATUALIZAR */
+/* ========================================= */
+
+#btnAtualizar{
+
+    min-width:160px;
+
+    margin-top:20px;
+
+}
+
+
+/* ========================================= */
+/* ANIMAÇÕES */
+/* ========================================= */
+
+button{
+
+    transition:
+        background .3s,
+        transform .2s,
+        box-shadow .3s;
+
+}
+
+button:hover{
+
+    box-shadow:0px 6px 12px rgba(0,0,0,.18);
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+
+/* ========================================= */
+/* INPUTS */
+/* ========================================= */
+
+input{
+
+    transition:
+        border .3s,
+        box-shadow .3s,
+        background .3s;
+
+}
+
+input:hover{
+
+    border-color:#198754;
+
+}
+
+
+/* ========================================= */
+/* SCROLL DA TABELA */
+/* ========================================= */
+
+#div6{
+
+    overflow-x:auto;
+
+}
+
+
+/* ========================================= */
+/* BARRA DE ROLAGEM */
+/* ========================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f1f1f1;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#198754;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#157347;
+
+}
+
+
+/* ========================================= */
+/* SELEÇÃO DE TEXTO */
+/* ========================================= */
+
+::selection{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE */
+/* ========================================= */
+
+@media screen and (max-width: 768px){
+
+    body{
+
+        padding:15px;
+
     }
 
+    #div1,
+    #div4,
+    #div5,
+    #div6{
 
-    #btnLogin {
-    margin-left: 168px;
-}
+        width:100%;
 
-/* ========================= */
-/* Página de Cadastro */
-/* ========================= */
+        max-width:100%;
 
-#div4 {
-    text-align: center;
-    margin-top: 120px;
-}
+        padding:20px;
 
-.campo {
-    margin: -4px 0;
-}
+    }
 
-.campo label {
-    display: inline-block;
-    width: 170px;
-    text-align: right;
-    margin-right: 10px;
-}
+    h1{
 
-.campo input {
-    width: 220px;
-    padding: 5px;
-}
+        font-size:24px;
 
-    .botoes {
-    display: flex;
-    justify-content: space-between;
-    width: 416px; /* ajuste conforme a largura do formulário */
-    margin: 30px auto 0;
-}
+    }
 
+    .campo input{
 
+        font-size:14px;
 
-/* ========================= */
-/* Página de recuperar */
-/* ========================= */
+        padding:10px;
 
-    #div5 {
-    text-align: center;
-    margin-top: 120px;
-    }   
+    }
 
+    .botoes,
+    .botoesTabela{
 
-/* ========================= */
-/* Página de tabela */
-/* ========================= */
+        flex-direction:column;
 
-#div6 {
-    text-align: center;
-    margin-top: 100px;
-}
+        gap:10px;
 
-#div6 table {
-    margin: 30px auto;
-    border-collapse: collapse;
-}
+    }
 
-#div6 th,
-#div6 td {
-    border: 1px solid black;
-    padding: 10px 20px;
-}
+    button{
 
-/* ========================= */
-/* Botão Excluir */
-/* ========================= */
+        width:100%;
 
-.btnExcluir {
+    }
 
-    width: 40px;
-    height: 40px;
+    #btnTabela{
 
-    border: none;
-    border-radius: 6px;
+        bottom:10px;
 
-    background-color: #dc3545;
-    color: white;
+        left:10px;
 
-    font-size: 18px;
+        font-size:11px;
 
-    cursor: pointer;
+        padding:7px 12px;
 
-    transition: 0.3s;
+    }
+
+    #tabelaUsuarios{
+
+        font-size:13px;
+
+    }
+
+    #tabelaUsuarios th,
+    #tabelaUsuarios td{
+
+        padding:10px;
+
+    }
 
 }
 
-.btnExcluir:hover {
 
-    background-color: #bb2d3b;
+/* ========================================= */
+/* CELULARES PEQUENOS */
+/* ========================================= */
 
-}
+@media screen and (max-width:480px){
 
-/* ========================= */
-/* Campo com erro */
-/* ========================= */
+    h1{
 
-.campoVazio {
-    border: 2px solid red;
-}
+        font-size:21px;
 
+    }
 
-/* ========================= */
-/* Botão Ver Cadastros */
-/* ========================= */
+    #tabelaUsuarios{
 
-#btnTabela {
+        font-size:12px;
 
-    position: fixed;
+    }
 
-    bottom: 15px;
-    left: 15px;
+    .btnExcluir{
 
-    padding: 6px 10px;
+        width:35px;
 
-    background-color: #198754;
-    color: white;
+        height:35px;
 
-    border: none;
-    border-radius: 5px;
+        font-size:15px;
 
-    cursor: pointer;
-
-    font-size: 12px;
-
-    transition: 0.3s;
+    }
 
 }
 
-#btnTabela:hover {
 
-    background-color: #157347;
+/* ========================================= */
+/* ANIMAÇÃO DE ENTRADA */
+/* ========================================= */
+
+#div1,
+#div4,
+#div5,
+#div6{
+
+    animation:aparecer .4s ease;
 
 }
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ========================================= */
+/* RODAPÉ (caso seja usado futuramente) */
+/* ========================================= */
+
+footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:13px;
+
+}
+
+
+/* ========================================= */
+/* FIM DO CSS */
+/* ========================================= */

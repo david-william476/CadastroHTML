@@ -1,47 +1,153 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CADASTRO SUS</title>
-   <link rel="stylesheet" href="CSS/Style.css">
-   <script src="JS/Script.js"></script>
 
-        
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Login SUS</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/Style.css">
+
 </head>
+
 <body>
-    
-    <div id="div1">
 
-        
+    <!-- ========================= -->
+    <!-- LOGIN -->
+    <!-- ========================= -->
+
+    <main id="div1">
+
         <h1>LOGIN SUS</h1>
-    <br>
 
-        <label>E-mail</label>
-        <input type="email" name="email" placeholder="Digite seu e-mail">
+        <br>
+
+        <div class="campo">
+
+            <label for="email">
+
+                E-mail
+
+            </label>
+
+            <input
+
+                type="email"
+
+                id="email"
+
+                name="email"
+
+                placeholder="Digite seu e-mail"
+
+                autocomplete="email"
+
+            >
+
+        </div>
+
+                <br>
+
+        <div class="campo">
+
+            <label for="senha">
+
+                Senha
+
+            </label>
+
+            <input
+
+                type="password"
+
+                id="senha"
+
+                name="password"
+
+                placeholder="Digite sua senha"
+
+                autocomplete="current-password"
+
+            >
+
+        </div>
 
         <br><br>
-        <label>Senha</label>
-        <input type="password" name="password" placeholder="Digite sua senha">  
 
-        <br><br><button id="btnLogin" onclick="login()">Login</button>
-        </div>
-            <div id="div2">
-                <br><br>
-    Não possui cadastro?
-    <a href="cadastro.html">Faça seu cadastro</a>
-</div>
- <div id="div3">
-    <br><br>
-    Esqueceu sua senha?
-    <a href="recupera.html">Recuperar senha</a>
- </div>
+        <button type="button" id="btnLogin">
 
- <button id="btnTabela"
-        onclick="window.location.href='tabela.html'">
-    📋 Ver Cadastros
-</button>
+            Entrar
+
+        </button>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- CADASTRO -->
+    <!-- ========================= -->
+
+    <section id="div2">
+
+        <p>
+
+            Não possui cadastro?
+
+            <a href="cadastro.html">
+
+                Faça seu cadastro
+
+            </a>
+
+        </p>
+
+    </section>
+
+        <!-- ========================= -->
+    <!-- RECUPERAR SENHA -->
+    <!-- ========================= -->
+
+    <section id="div3">
+
+        <p>
+
+            Esqueceu sua senha?
+
+            <a href="recupera.html">
+
+                Recuperar senha
+
+            </a>
+
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ACESSO À TABELA -->
+    <!-- ========================= -->
+
+    <a
+        href="tabela.html"
+        id="btnTabela">
+
+        Cadastros
+
+    </a>
+
+        <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script type="module" src="JS/Script.js"></script>
 
 </body>
-</html>
 
+</html>

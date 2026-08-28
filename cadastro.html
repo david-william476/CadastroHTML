@@ -1,96 +1,282 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Cadastros</title>
 
-    <link rel="stylesheet" href="CSS/Style.css">
-    <script src="JS/Script.js"></script>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro SUS</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/Style.css">
+
 </head>
 
 <body>
 
-   <div id="div4"> 
+    <main id="div4">
 
-    <h1>CRIAR CADASTRO</h1>
-    <br>
-    
- <div class="campo">
-    <label>Nome Completo</label>
-    <input type="text"
-     id="nome"
-     name="nome" 
-     placeholder="Digite seu nome completo" 
-     minlength="5"
-    maxlength="67">
-</div>
+        <h1>CRIAR CADASTRO</h1>
 
+        <br>
 
-<br>
-    <div class="campo">
-    <label>E-mail</label>
-    <input type="email" 
-     id="email"
-     name="email" 
-     placeholder="Digite seu e-mail">
-    </div>
+        <!-- ========================= -->
+        <!-- NOME -->
+        <!-- ========================= -->
 
+        <div class="campo">
 
-<br>
-<div class="campo">
-    <label>Senha</label>
-    <input type="password" 
-     id="senha"
-     name="password" 
-     placeholder="Crie uma senha" 
-     minlength="8" 
-     maxlength="24">
-</div>
-<br>
+            <label for="nome">
 
+                Nome Completo
 
-    <div class="campo">
-        <label>Confirme sua senha</label>
-        <input type="password" 
-         id="confirmarSenha"
-         name="confirmarSenha" 
-         placeholder="Confirme sua senha" 
-         minlength="8" 
-         maxlength="24">
-    </div>
+            </label>
 
- <br>
-    
-    <div class="campo">
-        <label>Data de Nascimento</label>
-        <input type="date" 
-         id="dataNascimento"
-         name="data" 
-         placeholder="Digite sua data de nascimento">
-    </div>
-    <br>
+            <input
 
-    <div class="campo">
-        <label>CPF</label>
-        <input
-    type="text"
-    id="cpf"
-    name="cpf"
-    placeholder="Digite seu CPF"
-    maxlength="11">
-    </div>
-<br>
+                type="text"
 
-    <div class="botoes">
-    <button id="limpar">Limpar</button>
+                id="nome"
 
-    <button id="btnCadastrar" onclick="cadastrar()">
-        Cadastrar
-    </button>
-</div>
+                name="nome"
 
-   </div>
+                placeholder="Digite seu nome completo"
+
+                minlength="5"
+
+                maxlength="67"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+        <!-- ========================= -->
+        <!-- EMAIL -->
+        <!-- ========================= -->
+
+        <div class="campo">
+
+            <label for="email">
+
+                E-mail
+
+            </label>
+
+            <input
+
+                type="email"
+
+                id="email"
+
+                name="email"
+
+                placeholder="Digite seu e-mail"
+
+                autocomplete="email"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+                <!-- ========================= -->
+        <!-- SENHA -->
+        <!-- ========================= -->
+
+        <div class="campo">
+
+            <label for="senha">
+
+                Senha
+
+            </label>
+
+            <input
+
+                type="password"
+
+                id="senha"
+
+                name="senha"
+
+                placeholder="Crie uma senha"
+
+                minlength="8"
+
+                maxlength="24"
+
+                autocomplete="new-password"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+        <!-- ========================= -->
+        <!-- CONFIRMAR SENHA -->
+        <!-- ========================= -->
+
+        <div class="campo">
+
+            <label for="confirmarSenha">
+
+                Confirmar Senha
+
+            </label>
+
+            <input
+
+                type="password"
+
+                id="confirmarSenha"
+
+                name="confirmarSenha"
+
+                placeholder="Confirme sua senha"
+
+                minlength="8"
+
+                maxlength="24"
+
+                autocomplete="new-password"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+        <!-- ========================= -->
+        <!-- DATA DE NASCIMENTO -->
+        <!-- ========================= -->
+
+        <div class="campo">
+
+            <label for="dataNascimento">
+
+                Data de Nascimento
+
+            </label>
+
+            <input
+
+                type="date"
+
+                id="dataNascimento"
+
+                name="dataNascimento"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+        <!-- ========================= -->
+        <!-- CPF -->
+        <!-- ========================= -->
+
+        <div class="campo">
+
+            <label for="cpf">
+
+                CPF
+
+            </label>
+
+            <input
+
+                type="text"
+
+                id="cpf"
+
+                name="cpf"
+
+                placeholder="Digite seu CPF"
+
+                maxlength="11"
+
+                inputmode="numeric"
+
+                required
+
+            >
+
+        </div>
+
+        <br>
+
+                <!-- ========================= -->
+        <!-- BOTÕES -->
+        <!-- ========================= -->
+
+        <div class="botoes">
+
+            <button
+
+                type="button"
+
+                id="limpar">
+
+                Limpar
+
+            </button>
+
+            <button
+
+                type="button"
+
+                id="btnCadastrar">
+
+                Cadastrar
+
+            </button>
+
+        </div>
+
+        <br>
+
+        <!-- ========================= -->
+        <!-- VOLTAR AO LOGIN -->
+        <!-- ========================= -->
+
+        <div class="voltarLogin">
+
+            <a href="index.html">
+
+                ← Voltar para o Login
+
+            </a>
+
+        </div>
+
+    </main>
+
+        <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script type="module" src="JS/Script.js"></script>
 
 </body>
+
 </html>

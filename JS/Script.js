@@ -1,161 +1,678 @@
-// =========================
-// Campo CPF - aceita somente números
-// =========================
+// ================================
+// IMPORTA O FIREBASE
+// ================================
 
-const cpf = document.getElementById("cpf");
+import {
+    db,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc
+} from "./firebase.js";
 
-if (cpf) {
-    cpf.addEventListener("input", function () {
-        cpf.value = cpf.value.replace(/\D/g, "");
-    });
+
+// ================================
+// VARIÁVEIS GLOBAIS
+// ================================
+
+let tabela = null;
+
+
+// ================================
+// INICIALIZAÇÃO DO SISTEMA
+// ================================
+
+document.addEventListener("DOMContentLoaded", iniciarSistema);
+
+function iniciarSistema() {
+
+    console.log("Sistema iniciado.");
+
+    configurarEventos();
+
+    verificarPagina();
+
 }
 
 
-// =========================
-// Cadastro de usuários
-// =========================
+// ================================
+// CONFIGURA TODOS OS EVENTOS
+// ================================
 
-function cadastrar() {
+function configurarEventos() {
 
-    let nome = document.getElementById("nome");
-    let email = document.getElementById("email");
-    let senha = document.getElementById("senha");
-    let confirmarSenha = document.getElementById("confirmarSenha");
-    let dataNascimento = document.getElementById("dataNascimento");
-    let cpf = document.getElementById("cpf");
+    // Campo CPF
+    const campoCpf = document.getElementById("cpf");
 
-    // Remove a borda vermelha
-    nome.classList.remove("campoVazio");
-    email.classList.remove("campoVazio");
-    senha.classList.remove("campoVazio");
-    confirmarSenha.classList.remove("campoVazio");
-    dataNascimento.classList.remove("campoVazio");
-    cpf.classList.remove("campoVazio");
+    if (campoCpf) {
 
-    let possuiErro = false;
+        campoCpf.addEventListener("input", somenteNumeros);
 
-    if (nome.value.trim() === "") {
-        nome.classList.add("campoVazio");
-        possuiErro = true;
     }
 
+    // Botão cadastrar
+    const btnCadastrar = document.getElementById("btnCadastrar");
+
+    if (btnCadastrar) {
+
+        btnCadastrar.addEventListener("click", cadastrar);
+
+    }
+
+    // Botão login
+    const btnLogin = document.getElementById("btnLogin");
+
+    if (btnLogin) {
+
+        btnLogin.addEventListener("click", login);
+
+    }
+
+    // Botão recuperar
+    const btnRecuperar = document.getElementById("btnRecuperar");
+
+    if (btnRecuperar) {
+
+        btnRecuperar.addEventListener("click", recuperarSenha);
+
+    }
+
+    // Botão limpar
+    const btnLimpar = document.getElementById("limpar");
+
+    if (btnLimpar) {
+
+        btnLimpar.addEventListener("click", limparFormulario);
+
+    }
+
+    // Botão atualizar
+    const btnAtualizar = document.getElementById("btnAtualizar");
+
+    if (btnAtualizar) {
+
+        btnAtualizar.addEventListener("click", carregarTabela);
+
+    }
+
+    // Guarda referência da tabela
+    tabela = document.getElementById("tabelaUsuarios");
+
+}
+
+
+// ================================
+// CPF SOMENTE NÚMEROS
+// ================================
+
+function somenteNumeros(evento) {
+
+    evento.target.value =
+        evento.target.value.replace(/\D/g, "");
+
+}
+
+
+// ================================
+// LIMPA O FORMULÁRIO
+// ================================
+
+function limparFormulario() {
+
+    const campos = document.querySelectorAll("input");
+
+    campos.forEach(campo => {
+
+        campo.value = "";
+
+        campo.classList.remove("erro");
+
+    });
+
+}
+
+
+// ================================
+// REMOVE ERROS
+// ================================
+
+function limparErros() {
+
+    const campos = document.querySelectorAll("input");
+
+    campos.forEach(campo => {
+
+        campo.classList.remove("erro");
+
+    });
+
+}
+
+// ================================
+// VALIDAÇÃO DOS CAMPOS
+// ================================
+
+function validarFormulario() {
+
+    limparErros();
+
+    let valido = true;
+
+    const nome = document.getElementById("nome");
+    const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
+    const confirmarSenha = document.getElementById("confirmarSenha");
+    const dataNascimento = document.getElementById("dataNascimento");
+    const cpf = document.getElementById("cpf");
+
+    const campos = [
+        nome,
+        email,
+        senha,
+        confirmarSenha,
+        dataNascimento,
+        cpf
+    ];
+
+    campos.forEach(campo => {
+
+        if (!campo) return;
+
+        if (campo.value.trim() === "") {
+
+            campo.classList.add("erro");
+            valido = false;
+
+        }
+
+    });
+
+    if (!valido) {
+
+        alert("Preencha todos os campos.");
+        return false;
+
+    }
+
+    if (senha.value !== confirmarSenha.value) {
+
+        senha.classList.add("erro");
+        confirmarSenha.classList.add("erro");
+
+        alert("As senhas não coincidem.");
+
+        return false;
+
+    }
+
+    if (cpf.value.length !== 11) {
+
+        cpf.classList.add("erro");
+
+        alert("CPF inválido.");
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+// ================================
+// CADASTRAR USUÁRIO
+// ================================
+
+async function cadastrar() {
+
+    if (!validarFormulario()) {
+
+        return;
+
+    }
+
+    const usuario = {
+
+        nome: document.getElementById("nome").value.trim(),
+
+        email: document.getElementById("email").value.trim(),
+
+        senha: document.getElementById("senha").value,
+
+        dataNascimento:
+            document.getElementById("dataNascimento").value,
+
+        cpf:
+            document.getElementById("cpf").value
+
+    };
+
+    try {
+
+        await addDoc(
+            collection(db, "usuarios"),
+            usuario
+        );
+
+        alert("Cadastro realizado com sucesso!");
+
+        limparFormulario();
+
+        window.location.href = "index.html";
+
+    }
+
+    catch (erro) {
+
+        console.error("Erro ao cadastrar:", erro);
+
+        alert("Não foi possível realizar o cadastro.");
+
+    }
+
+}
+
+// ================================
+// LOGIN
+// ================================
+
+async function login() {
+
+    const email = document.querySelector('input[name="email"]');
+    const senha = document.querySelector('input[name="password"]');
+
+    if (!email || !senha) {
+
+        return;
+
+    }
+
+    email.classList.remove("erro");
+    senha.classList.remove("erro");
+
     if (email.value.trim() === "") {
-        email.classList.add("campoVazio");
-        possuiErro = true;
+
+        email.classList.add("erro");
+
+        alert("Digite seu e-mail.");
+
+        return;
+
     }
 
     if (senha.value.trim() === "") {
-        senha.classList.add("campoVazio");
-        possuiErro = true;
-    }
 
-    if (confirmarSenha.value.trim() === "") {
-        confirmarSenha.classList.add("campoVazio");
-        possuiErro = true;
-    }
+        senha.classList.add("erro");
 
-    if (dataNascimento.value === "") {
-        dataNascimento.classList.add("campoVazio");
-        possuiErro = true;
-    }
+        alert("Digite sua senha.");
 
-    if (cpf.value.trim() === "") {
-        cpf.classList.add("campoVazio");
-        possuiErro = true;
-    }
-
-    if (possuiErro) {
-        alert("Preencha todos os campos.");
         return;
+
     }
 
-    // Verifica se as senhas são iguais
-    if (senha.value !== confirmarSenha.value) {
-        alert("As senhas não coincidem.");
+    try {
+
+        const consulta = await getDocs(
+            collection(db, "usuarios")
+        );
+
+        let encontrado = false;
+
+        consulta.forEach((documento) => {
+
+            const usuario = documento.data();
+
+            if (
+
+                usuario.email === email.value.trim() &&
+                usuario.senha === senha.value
+
+            ) {
+
+                encontrado = true;
+
+            }
+
+        });
+
+        if (encontrado) {
+
+            alert("Login realizado com sucesso!");
+
+            window.location.href = "tabela.html";
+
+        }
+
+        else {
+
+            alert("E-mail ou senha incorretos.");
+
+        }
+
+    }
+
+    catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao realizar login.");
+
+    }
+
+}
+
+
+// ================================
+// RECUPERAR SENHA
+// ================================
+
+async function recuperarSenha() {
+
+    const email = document.querySelector('input[type="email"]');
+
+    if (!email) {
+
         return;
+
     }
 
-    let usuario = {
-        nome: nome.value,
-        email: email.value,
-        senha: senha.value,
-        dataNascimento: dataNascimento.value,
-        cpf: cpf.value
-    };
+    email.classList.remove("erro");
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    if (email.value.trim() === "") {
 
-    usuarios.push(usuario);
+        email.classList.add("erro");
 
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        alert("Digite seu e-mail.");
 
-    alert("Cadastro realizado com sucesso!");
+        return;
 
-window.location.href = "index.html";
-}
+    }
 
-// =========================
-// Login (por enquanto)
-// =========================
+    try {
 
-function login() {
-    alert("Função de login ainda será implementada.");
-}
+        const consulta = await getDocs(
+            collection(db, "usuarios")
+        );
 
+        let encontrado = false;
 
-// =========================
-// Recuperar senha (por enquanto)
-// =========================
+        consulta.forEach((documento) => {
 
-function recuperar() {
-    alert("Função de recuperação de senha ainda será implementada.");
-}
+            const usuario = documento.data();
 
-//Carregar tabela
+            if (usuario.email === email.value.trim()) {
 
-function carregarTabela() {
+                encontrado = true;
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            }
 
-    let tabela = document.getElementById("tabelaUsuarios");
+        });
 
-    for (let i = 0; i < usuarios.length; i++) {
+        if (encontrado) {
 
-        let linha = tabela.insertRow();
+            alert(
+                "E-mail localizado.\n\nEm breve enviaremos uma recuperação automática."
+            );
 
-        let colunaNome = linha.insertCell(0);
-        let colunaData = linha.insertCell(1);
-        let colunaCpf = linha.insertCell(2);
-        let colunaAcao = linha.insertCell(3);
+        }
 
-        colunaNome.innerHTML = usuarios[i].nome;
+        else {
 
-        let partes = usuarios[i].dataNascimento.split("-");
-        let dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
+            alert("E-mail não encontrado.");
 
-        colunaData.innerHTML = dataFormatada;
-        colunaCpf.innerHTML = usuarios[i].cpf;
+        }
 
-        colunaAcao.innerHTML =
-        `<button class="btnExcluir" onclick="excluirUsuario(${i})">
-            🗑️
-        </button>`;
+    }
+
+    catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao consultar o banco.");
+
     }
 
 }
 
-function excluirUsuario(indice) {
+// ================================
+// CARREGA A TABELA
+// ================================
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+async function carregarTabela() {
 
-    if (confirm("Deseja realmente excluir este usuário?")) {
+    if (!tabela) {
 
-        usuarios.splice(indice, 1);
+        return;
 
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    }
 
-        location.reload();
+    const corpoTabela = tabela.querySelector("tbody");
+
+    corpoTabela.innerHTML = "";
+
+    try {
+
+        const consulta = await getDocs(
+            collection(db, "usuarios")
+        );
+
+        consulta.forEach((documento) => {
+
+            const usuario = documento.data();
+
+            const linha = corpoTabela.insertRow();
+
+            const colunaNome = linha.insertCell(0);
+            const colunaData = linha.insertCell(1);
+            const colunaCpf = linha.insertCell(2);
+            const colunaAcao = linha.insertCell(3);
+
+            colunaNome.textContent = usuario.nome;
+
+            colunaData.textContent =
+                formatarData(usuario.dataNascimento);
+
+            colunaCpf.textContent = usuario.cpf;
+
+            const botao = document.createElement("button");
+
+            botao.textContent = "🗑️";
+
+            botao.className = "btnExcluir";
+
+            botao.addEventListener("click", () => {
+
+                excluirUsuario(documento.id);
+
+            });
+
+            colunaAcao.appendChild(botao);
+
+        });
+
+    }
+
+    catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao carregar usuários.");
 
     }
 
 }
+
+
+
+// ================================
+// FORMATA A DATA
+// ================================
+
+function formatarData(data) {
+
+    if (!data) {
+
+        return "";
+
+    }
+
+    const partes = data.split("-");
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+}
+
+
+
+// ================================
+// EXCLUIR USUÁRIO
+// ================================
+
+async function excluirUsuario(id) {
+
+    const confirmar = confirm(
+        "Deseja realmente excluir este usuário?"
+    );
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+    try {
+
+        await deleteDoc(
+            doc(db, "usuarios", id)
+        );
+
+        await carregarTabela();
+
+        alert("Usuário excluído com sucesso!");
+
+    }
+
+    catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao excluir usuário.");
+
+    }
+
+}
+
+// ================================
+// ATUALIZA A TABELA
+// ================================
+
+async function atualizarTabela() {
+
+    await carregarTabela();
+
+}
+
+
+
+// ================================
+// VERIFICA QUAL PÁGINA FOI ABERTA
+// ================================
+
+function verificarPagina() {
+
+    const pagina = window.location.pathname
+        .split("/")
+        .pop()
+        .toLowerCase();
+
+    switch (pagina) {
+
+        case "tabela.html":
+
+            carregarTabela();
+
+            break;
+
+        case "index.html":
+
+            break;
+
+        case "cadastro.html":
+
+            break;
+
+        case "recupera.html":
+
+            break;
+
+        default:
+
+            break;
+
+    }
+
+}
+
+
+
+// ================================
+// UTILITÁRIOS
+// ================================
+
+function mostrarMensagem(texto) {
+
+    alert(texto);
+
+}
+
+
+
+function mostrarErro(texto) {
+
+    console.error(texto);
+
+    alert(texto);
+
+}
+
+
+
+// ================================
+// FUTURAS FUNÇÕES
+// ================================
+
+// editarUsuario()
+// logout()
+// autenticação Firebase
+// pesquisa por CPF
+// pesquisa por Nome
+
+// ================================
+// EXPORTA PARA O HTML
+// ================================
+
+// Como estamos usando ES Modules,
+// disponibilizamos apenas as funções
+// que podem ser chamadas pelo HTML,
+// caso sejam necessárias futuramente.
+
+window.cadastrar = cadastrar;
+
+window.login = login;
+
+window.recuperarSenha = recuperarSenha;
+
+window.carregarTabela = carregarTabela;
+
+window.excluirUsuario = excluirUsuario;
+
+window.limparFormulario = limparFormulario;
+
+window.atualizarTabela = atualizarTabela;
+
+
+// ================================
+// FIM DO SCRIPT
+// ================================
