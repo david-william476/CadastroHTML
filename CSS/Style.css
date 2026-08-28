@@ -135,3 +135,36 @@ body {
     border: 2px solid red;
 }
 
+
+/* ========================= */
+/* Botão Ver Cadastros */
+/* ========================= */
+
+#btnTabela {
+
+    position: fixed;
+
+    bottom: 15px;
+    left: 15px;
+
+    padding: 6px 10px;
+
+    background-color: #198754;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.3s;
+
+}
+
+#btnTabela:hover {
+
+    background-color: #157347;
+
+}
